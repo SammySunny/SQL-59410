@@ -2,7 +2,7 @@
 
 Este repositorio contiene la estructura de la base de datos para el Centro de Estética "Cosmetología Integral". La base de datos está diseñada para gestionar información sobre empleados, tratamientos, productos, clientes y citas.
 
-## Contenidos del repositorio
+## Contenidos de la carpeta "entrega_final+Zidek":
 
 - **Readme_PDF**: Un conjunto de diapositivas que explica el proyecto y su estructura general.
 - **diagrama_entidad_relacion.png**: Imagen del diagrama de entidad-relación.
