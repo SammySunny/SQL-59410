@@ -1,25 +1,54 @@
 USE cosmetologia_integral;
 
 
--- -------------------------------------------------
--- FUNCIONES CONSULTAS -----------------------------
--- -------------------------------------------------
-
--- Función para consultar datos en base a usuario solicitado:
-
--- Validando: -----
-
-SELECT cosmetologia_integral.fn_obtener_datos_empleado(386); -- Valido los datos del usuario 386
-SELECT cosmetologia_integral.fn_obtener_datos_empleado(390); -- Sé que el usuario 390 no existe y quiero validar ello
-
--- -----------------
+-- --------------------------------------------------------
+-- PROCEDIMIENTOS ALMACENADOS -----------------------------
+-- --------------------------------------------------------
 
 
--- Función para saber qué productos necesito según el nro de tratamiento indicado:
+-- Procedimiento para poder agregar nueva Cita:
 
--- Validando: -----
+DELIMITER //
 
-SELECT cosmetologia_integral.fn_obtener_productos_por_tratamiento(10); -- Traeme los productos que sirvan para el tratamiento 10
-SELECT cosmetologia_integral.fn_obtener_productos_por_tratamiento(11); -- Yo sé que no existe un tratamiento 11, debe validarme eso
+CREATE PROCEDURE cosmetologia_integral.sp_agregar_cita(
+    IN p_id_cliente INT,
+    IN p_id_tratamiento INT,
+    IN p_fecha DATE,
+    IN p_hora TIME
+)
+BEGIN
+    INSERT INTO cosmetologia_integral.cita (id_cliente, id_tratamiento, fecha, hora)
+    VALUES (p_id_cliente, p_id_tratamiento, p_fecha, p_hora);
+END //
 
--- -----------------
+DELIMITER ;
+
+
+
+-- --------------------------------------------
+
+
+
+
+-- Procedimiento para actualizar datos de empleado según su id_empleado/usuario empleado:
+
+DELIMITER //
+
+CREATE PROCEDURE cosmetologia_integral.sp_actualizar_contacto_empleado_por_id(
+    IN p_id_empleado INT,
+    IN p_numero VARCHAR(25),
+    IN p_email VARCHAR(250)
+)
+BEGIN
+    UPDATE cosmetologia_integral.contacto_empleado
+    SET numero = p_numero,
+        email = p_email
+    WHERE empleado = p_id_empleado; 
+END //
+
+DELIMITER ;
+
+
+
+
+-- --------------------------------------------------------
